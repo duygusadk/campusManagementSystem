@@ -1,9 +1,6 @@
 package com.example.campusManagement.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,10 +17,11 @@ public class Course extends BaseEntity{
     private String description;
     private int credits;
 
-    @OneToMany(mappedBy = " course",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Enrollment> enrollments=new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
     private Department department;
     public Course(String title, String description, int credits) {
         this.title = title;

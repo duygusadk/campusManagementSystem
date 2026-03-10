@@ -1,6 +1,7 @@
 package com.example.campusManagement.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class Professor extends BaseEntity{
     private String email;
     private String academicRank;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
     public Professor(String firstName, String lastName, String email, String academicRank) {

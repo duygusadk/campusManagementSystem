@@ -19,8 +19,22 @@ public class Student extends BaseEntity{
     private String email;
     private String facultyNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL,orphanRemoval = true)
     private Address address;
-    @OneToMany(mappedBy = "enrollment",fetch = FetchType.LAZY)
-    private List<Enrollment> enrollments=new ArrayList<>();
+    @OneToMany(mappedBy = "student",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Enrollment>enrollments=new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "student_club",
+            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "club_id"))
+    private List<Club>clubs=new ArrayList<>();
+
+    public Student(String firstName, String lastName, String email, String facultyNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.facultyNumber = facultyNumber;
+
+    }
 }

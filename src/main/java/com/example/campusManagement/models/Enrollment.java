@@ -25,7 +25,9 @@ public class Enrollment extends BaseEntity{
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public Enrollment(LocalDate enrollmentDate) {
+    public Enrollment(LocalDate enrollmentDate, Course course, Student student) {
         this.enrollmentDate = enrollmentDate;
+        this.course = course;
+        this.student = student;
     }
 }

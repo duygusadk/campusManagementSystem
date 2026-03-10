@@ -1,7 +1,6 @@
 package com.example.campusManagement.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,8 @@ public class Address extends BaseEntity{
     private String city;
     private String country;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
     private Student student;
     public Address(String street, String city, String country) {
         this.street = street;
