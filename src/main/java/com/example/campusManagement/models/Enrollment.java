@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class Enrollment extends BaseEntity{
-    private LocalDate enrollmentDate;
+    private int enrollmentDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
@@ -25,9 +25,15 @@ public class Enrollment extends BaseEntity{
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public Enrollment(LocalDate enrollmentDate, Course course, Student student) {
+    public Enrollment(int enrollmentDate, Course course, Student student) {
         this.enrollmentDate = enrollmentDate;
         this.course = course;
         this.student = student;
+    }
+
+    public void setEnrollmentYear(int enrollmentYear) {
+    }
+
+    public int getEnrollmentYear() {
     }
 }
