@@ -32,6 +32,7 @@ public class Enrollment extends BaseEntity{
     }
 
     public void setEnrollmentYear(int enrollmentYear) {
+
     }
 
     public int getEnrollmentYear() {
